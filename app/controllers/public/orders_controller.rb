@@ -59,6 +59,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.item_id = cart_item.item.id
       @order_detail.price = (cart_item.item.add_tax_price.to_i * cart_item.amount)
       @order_detail.save
+      @cart_items.destroy_all
     end
     redirect_to orders_thanks_path
   end
