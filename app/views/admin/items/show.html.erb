@@ -1,0 +1,44 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-3 d-flex align-items-center text-left my-4">
+      <h2>商品詳細</h2>
+    </div>
+  </div>
+</div>
+<table class="container table table-borderless">
+  <thead>
+    <tr>
+      <th><%= attachment_image_tag @item, :image, :fill, 100, 100, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <th>商品名</th>
+        <td><%= @item.name %></td>
+      </tr>
+      <tr>
+        <th>商品説明</th>
+        <td><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <th>ジャンル</th>
+        <td><%= @item.genre.name %></td>
+      </tr>
+      <tr>
+        <th>税込価格<br/>
+          （税抜価格）
+        </th>
+        <td><%= @item.add_tax_price.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円</td>
+      </tr>
+      <tr>
+        <th>販売ステータス</th>
+        <td><%= @item.is_active %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-dark", type:"button" %></td>
+        <td></td>
+      </tr>
+  </tbody>
+</table>

@@ -1,0 +1,80 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-5 d-flex align-items-center text-left my-4">
+      <h2><%= @customer.first_name + @customer.last_name %>さんの会員情報編集</h2>
+    </div>
+  </div>
+</div>
+<%= form_with model: @customer,:url => {:action => :update}, local:true do |f| %>
+<table class="container table table-borderless">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>会員ID</th>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <th>氏名</th>
+      <td class="form-inline">
+        <div class="col-6"><%= f.text_field :first_name, autofocus: true, class: "form-control" %></div>
+        <div class="col-6"><%= f.text_field :last_name, autofocus: true, class: "form-control" %></div>
+      </td>
+    </tr>
+    <tr>
+      <th>フリガナ</th>
+      <td class="form-inline">
+        <div class="col-6"><%= f.text_field :first_name_kana, autofocus: true, class: "form-control" %></div>
+        <div class="col-6"><%= f.text_field :last_name_kana, autofocus: true, class: "form-control" %></div>
+      </td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td class="form-group">
+        <div class="col-6"><%= f.text_field :postal_code, autofocus: true, class: "form-control" %></div>
+      </td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td class="form-group" colspan="2">
+        <div class="col"><%= f.text_field :address, autofocus: true, class: "form-control" %></div>
+      </td>
+    </tr>
+    <tr>
+      <th>電話番組</th>
+      <td class="form-group">
+        <div class="col-6"><%= f.text_field :telephone_number, autofocus: true, class: "form-control" %></div>
+      </td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td class="form-group">
+        <div class="col-6"><%= f.text_field :email, autofocus: true, class: "form-control" %></div>
+      </td>
+    </tr>
+    <tr class="form-group">
+      <th>会員ステータス</th>
+      <td>
+        <%= f.radio_button :is_active, "有効" %>
+        <%= f.label :is_active, "有効", {value: :is_active, style: "display: inline-block;"} %>
+        <%= f.radio_button :is_active, "無効" %>
+        <%= f.label :is_active, "無効", {value: :is_active, style: "display: inline-block;"} %>
+      </td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="container">
+  <div class="row">
+    <div class="col d-flex justify-content-center mb-4"><%= f.submit '変更を保存', class: "btn btn-success" %></div>
+  </div>
+</div>
+<% end %>

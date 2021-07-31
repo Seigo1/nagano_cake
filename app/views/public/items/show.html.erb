@@ -1,0 +1,30 @@
+<%= form_with model: @cart_item, local:true do |f| %>
+<table class="container table table-borderless d-flex align-items-center my-4">
+  <thead>
+    <tr>
+      <th><%= attachment_image_tag @item, :image, :fill, 100, 100, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <th></th>
+        <td><h1><%= @item.name %></h1></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><span>¥<%= @item.add_tax_price.to_s(:delimited) %></span>（税込）</td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><a class="mr-5"><%= f.select :amount, {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5}, include_blank: "個数選択" %></a><%= f.submit 'カートに入れる', class: "btn btn-dark" %></td>
+      </tr>
+  </tbody>
+</table>
+<%= f.hidden_field :item_id, :value => @item.id %>
+<%= f.hidden_field :customer_id, :value => current_customer.id %>
+<% end %>

@@ -10,6 +10,54 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar" style="color: white; background-color: rgba(222,179,101,1);">
+        <div class="container-fluid">
+          <div class="row float-left">
+            <div class="col-lg mx-3">
+              <%= link_to root_path do %>
+              <img src="/assets/no_image.jpg" class="img-fluid">
+              <% end %>
+              <%= flash[:message] %>
+            </div>
+          </div>
+          <% if admin_signed_in? %>
+            <div class="row">
+              <div class="col-lg p-3">
+                <%= link_to "商品一覧", admin_items_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "会員一覧", admin_customers_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "注文履歴一覧", admin_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-dark", type:"button" %>
+              </div>
+            </div>
+          <% elsif customer_signed_in? %>
+            <div>
+              <div class="col-lg p-3">
+                <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-dark", type:"button" %>
+                <%= link_to "商品一覧", items_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "カート", cart_items_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: "btn btn-dark", type:"button" %>
+              </div>
+            </div>
+          <% else %>
+            <div>
+              <div class="col-lg p-3">
+                <%= link_to "About", about_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "商品一覧", items_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-dark", type:"button" %>
+                <%= link_to "ログイン", customer_session_path, class: "btn btn-dark", type:"button" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
+    <footer class="footer">
+      <div class="container-offset text-center" style="background-color: rgba(222,179,101,1);">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,36 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-5 d-flex align-items-center text-left m-3">
+      <h2>配送先編集</h2>
+    </div>
+  </div>
+</div>
+<%= form_with model: @address,:url => {:action => :update}, local:true do |f| %>
+  <table class="container table table-borderless">
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <th>郵便番号（ハイフンなし）</th>
+        <td class="form-group">
+          <div class="col-6"><%= f.text_field :postal_code, autofocus: true, class: "form-control" %></div>
+        </td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td class="form-group" colspan="2">
+          <div class="col"><%= f.text_field :address, autofocus: true, class: "form-control" %></div>
+        </td>
+      </tr>
+      <tr>
+        <th>宛名</th>
+        <td class="form-group">
+          <div class="col-6"><%= f.text_field :name, autofocus: true, class: "form-control" %></div>
+        </td>
+        <td class="form-group">
+          <div class="col-6"><%= f.submit '変更内容を保存', class: "btn btn-success" %></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

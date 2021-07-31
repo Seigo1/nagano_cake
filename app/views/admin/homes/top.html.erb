@@ -1,0 +1,38 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-4 d-flex align-items-center text-left m-4">
+      <h2>注文履歴一覧</h2>
+    </div>
+  </div>
+</div>
+<table class="container table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">購入日時</th>
+      <th scope="col">購入者</th>
+      <th scope="col">注文個数</th>
+      <th scope="col">注文ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+      <th>
+        <ins>
+          <%= link_to edit_admin_order_path(order.id) do %>
+          <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+          <% end %>
+        </ins>
+      </th>
+      <td>
+        <%= order.name %>
+      </td>
+      <td>
+        <%= order.order_details.sum(:amount) %>
+      </td>
+      <td><%= order.status %></td>
+    </tr>
+
+    <% end %>
+  </tbody>
+</table>

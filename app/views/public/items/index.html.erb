@@ -1,0 +1,21 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-3 d-flex align-items-center text-left mt-4">
+      <h2>商品一覧(全<%= @items_count %>件)</h2>
+    </div>
+  </div>
+</div>
+<div class="container mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="row m-auto">
+    <% @items.each do |item| %>
+    <div class="col">
+      <%= link_to item_path(item.id) do %>
+      <%= attachment_image_tag item, :image, :fill, 100, 100, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
+      <% end %><br/>
+      <%= item.name %><br/>
+      ¥<%= item.add_tax_price.to_s(:delimited) %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<%= paginate @items %>

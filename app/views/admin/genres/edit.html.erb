@@ -1,0 +1,17 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-3 d-flex align-items-center text-left my-4">
+      <h2>ジャンル編集</h2>
+    </div>
+  </div>
+</div>
+<%= form_with model: @genre,:url => {:action => :update}, local:true do |f| %>
+  <div class="container">
+    <div class="form-group">
+      <label for="genre_name" class="mr-2">ジャンル名</label>
+      <div style="display: inline-block; margin-right: 10px;"><%= f.text_field :name, autofocus: true, class: "form-control" %></div>
+      <span><%= f.submit '変更を保存', class: "btn btn-success" %><span>
+    </div>
+  </div>
+</div>
+<% end %>

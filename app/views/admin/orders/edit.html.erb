@@ -1,0 +1,80 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-4 d-flex align-items-center text-left my-4">
+      <h2>注文履歴詳細</h2>
+    </div>
+  </div>
+</div>
+
+<table class="container table table-borderless">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th style="width: 150px;">購入者</th>
+      <td><%= @order.name %></td>
+    </tr>
+    <tr>
+      <th>注文日</th>
+      <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+    </tr>
+    <tr>
+      <th>配送先</th>
+      <td>
+        〒<%= @order.postal_code %><br/>
+        <%= @order.address %><br/>
+        <%= @order.name %>
+      </td>
+    </tr>
+    <tr>
+      <th>支払方法</th>
+      <td><%= @order.payment_method %></td>
+    </tr>
+    <tr>
+      <th>注文ステータス</th>
+      <td><%= @order.status %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="container table table-bordered col-8 ml-5" style="float: left;">
+  <thead>
+    <th>商品名</th>
+    <th>単価（税込）</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th>製作ステータス</th>
+  </thead>
+  <tbody>
+    <% @sum = 0 %>
+    <% @order_details.each do |order_detail| %>
+    <tr>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.item.add_tax_price.to_s(:delimited) %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= order_detail.price %></td>
+      <td><%= order_detail.making_status %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="container table table-borderless col-3" style="margin-bottom: 100px;">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th>商品合計</th>
+      <td><%= @order.total_payment.to_s(:delimited) %></td>
+    </tr>
+    <tr>
+      <th>送料</th>
+      <td><%= @order.shipping_cost.to_s(:delimited) %></td>
+    </tr>
+    <tr>
+      <th>請求金額合計</th>
+      <td><%= (@order.total_payment + @order.shipping_cost).to_s(:delimited) %></td>
+    </tr>
+  </tbody>
+</table>

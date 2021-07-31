@@ -1,0 +1,38 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-2 d-flex align-items-center text-left my-4">
+      <h2>商品一覧</h2>
+    </div>
+    <div class="col m-3 text-right">
+      <%= link_to "", new_admin_item_path, class: "btn btn-outline-secondary fa fa-plus-circle" %>
+    </div>
+  </div>
+</div>
+<table class="container table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">商品ID</th>
+      <th scope="col">商品名</th>
+      <th scope="col">税込価格</th>
+      <th scope="col">ジャンル</th>
+      <th scope="col">ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <th><%= item.id %></th>
+        <td>
+          <ins>
+            <%= link_to admin_item_path(@items.ids) do %>
+            <%= item.name %>
+            <% end %>
+          </ins>
+        </td>
+        <td><%= item.price.to_s(:delimited) %></td>
+        <td><%= item.genre.name %></td>
+        <td><%= item.is_active %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

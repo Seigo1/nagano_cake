@@ -1,0 +1,48 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-4 d-flex align-items-center text-left m-3">
+      <h2>マイページ</h2>
+    </div>
+  </div>
+  <div class="row mx-auto mb-4">
+    <h4 class="mr-4">登録情報</h4><%= link_to "編集する", edit_customer_path, class: "btn btn-success", type:"button" %>
+  </div>
+</div>
+<table class="container table table-bordered">
+  <thead>
+  </thead>
+  <tbody>
+      <tr>
+        <th>氏名</th>
+        <td><%= @customer.first_name + "  " + @customer.last_name %></td>
+      </tr>
+      <tr>
+        <th>カナ</th>
+        <td><%= @customer.first_name_kana + "  " + @customer.last_name_kana %></td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= @customer.postal_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= @customer.address %></td>
+      </tr>
+      <tr>
+        <th>電話番組</th>
+        <td><%= @customer.telephone_number %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+  </tbody>
+</table>
+<div class="container mx-auto">
+  <div class="row mx-auto mb-4">
+    <h4 class="mr-5">配送先</h4><%= link_to "一覧を見る", addresses_path(current_customer.id), class: "btn btn-primary", type:"button" %>
+  </div>
+  <div class="row mx-auto mb-4">
+    <h4 class="mr-4">注文履歴</h4><%= link_to "一覧を見る", orders_path(current_customer.id), class: "btn btn-primary", type:"button" %>
+  </div>
+</div>

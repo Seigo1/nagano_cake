@@ -1,0 +1,42 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-3 d-flex align-items-center text-left">
+      <h2 class="m-4">ログイン</h2>
+    </div>
+  </div>
+  <div class="row m-auto">
+    <h3 class="m-3">会員の方はこちらからログイン</h3>
+  </div>
+</div>
+<%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+<table class="container table table-borderless">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="field">
+      <td>メールアドレス</td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+    </tr>
+    <tr class="field">
+      <td>パスワード</td>
+      <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <div class="actions">
+          <%= f.submit "ログイン" %>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
+<div class="d-block mx-auto text-lg-center">
+<h3>会員登録がお済みでない⽅</h3>
+<%= link_to "こちら", new_customer_registration_path %><a>から新規登録を行なってください</a>
+</div>

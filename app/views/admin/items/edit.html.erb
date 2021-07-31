@@ -1,0 +1,52 @@
+<div class="container mx-auto">
+  <div class="row m-auto">
+    <div class="col-3 d-flex align-items-center text-left my-4">
+      <h2>商品編集</h2>
+    </div>
+  </div>
+</div>
+<%= form_with model: @item,:url => {:action => :update}, local:true do |f| %>
+<table class="container table table-borderless">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <th class="form-group">商品画像</th>
+        <td><%= f.attachment_field :image, class: "form-control-file" %></td>
+      </tr>
+      <tr>
+        <th class="form-group">商品名</th>
+        <td><%= f.text_field :name, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th class="form-group">商品説明</th>
+        <td><%= f.text_area :introduction, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th class="form-group">ジャンル</th>
+        <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+      </tr>
+      <tr>
+        <th class="form-group">税抜価格</th>
+        <td><div style="display: inline-block"><%= f.text_field :price, class: "form-control" %></div>円</td>
+      </tr>
+      <tr>
+        <th class="form-group">販売ステータス</th>
+        <td>
+          <%= f.radio_button :is_active, :true %>
+          <%= f.label :is_active, "販売中" %>
+          <%= f.radio_button :is_active, :false %>
+          <%= f.label :is_active, "販売停止中" %>
+        </td>
+      </tr>
+        <th></th>
+        <td><%= f.submit '変更を保存', class: "btn btn-success" %></td>
+        <td></td>
+      </tr>
+  </tbody>
+</table>
+<% end %>
